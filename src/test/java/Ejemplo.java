@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import java.io.File;
+import java.io.IOException;
 
 import java.sql.Driver;
 import java.time.Duration;
@@ -42,6 +44,37 @@ public class Ejemplo{
         WebElement drop_down_select = driver.findElement(By.xpath("//select[@class='form-select']"));
         Select option = new Select(drop_down_select);
         option.selectByValue("3");
+
+        WebElement drop_down_data_list = driver.findElement(By.xpath("//input[@name='my-datalist']"));
+        drop_down_data_list.sendKeys("San Francisco");
+        drop_down_data_list.clear();
+        drop_down_data_list.sendKeys("Los Angeles");
+
+        try {
+            File file = new File("PruebaDoc.txt");
+            if (file.createNewFile()){//creacion del archivo
+                System.out.println("Se creo el archivo");
+            }else{
+                System.out.println("ya existe un doc con ese nombre");
+            }
+
+        }catch (IOException e){
+            System.out.println("Ha ocurrido un error");
+            e.printStackTrace();//el error que tre se imprime
+        }
+
+        WebElement check_box = driver.findElement(By.xpath(("(//input[@name='my-check'])[1]")));
+        check_box.click();
+
+        WebElement choose_file = driver.findElement(By.xpath(("//input[@name='my-file']")));
+        choose_file.click();
+
+
+
+
+        //WebElement opcion_list = driver.findElement(By.xpath("//option[@value='San Francisco']"));
+        //opcion_list.click();
+
 
 
 
