@@ -1,8 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import java.io.File;
@@ -14,13 +12,14 @@ import java.time.Duration;
 public class Ejemplo{
     
     @Test
-    public  void prueba(){
+    public  void prueba() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver","./src/test/resources/Driver/chromedriver");
 
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.selenium.dev/selenium/web/web-form.html");
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(1000));
         driver.manage().window().maximize();
+
 
         String title = driver.getTitle();
         Assert.assertEquals("Web form", title);
@@ -63,21 +62,57 @@ public class Ejemplo{
             e.printStackTrace();//el error que tre se imprime
         }
 
+        WebElement choose_file = driver.findElement(By.xpath(("//input[@name='my-file']")));
+        choose_file.sendKeys("/Users/william/Desktop/Project_001/PruebaDoc.txt");
+
         WebElement check_box = driver.findElement(By.xpath(("(//input[@name='my-check'])[1]")));
         check_box.click();
 
-        WebElement choose_file = driver.findElement(By.xpath(("//input[@name='my-file']")));
-        choose_file.click();
+        WebElement check_box_2 = driver.findElement(By.xpath(("(//input[@name='my-check'])[2]")));
+        check_box_2.click();
+
+        WebElement color_picker = driver.findElement(By.xpath(("//input[@name='my-colors']")));
+        color_picker.sendKeys("#58C615");
+
+        WebElement date_picker = driver.findElement(By.xpath(("//input[@name='my-date']")));
+        date_picker.click();
+
+        WebElement open_months = driver.findElement(By.xpath("(//TH[not(@style='display: none;') and @class='datepicker-switch' ])[1]"));
+        open_months.click();
+
+        WebElement open_days = driver.findElement(By.xpath("(//TH[not(@style='display: none;') and @class='datepicker-switch' ])[2]"));
+        open_days.click();
+
+        WebElement year = driver.findElement(By.xpath("//span[contains(text(),'2024')]"));
+        year.click();
+
+        WebElement month = driver.findElement(By.xpath("//span[contains(text(),'Mar')]"));
+        month.click();
+
+        WebElement day = driver.findElement(By.xpath("//td[contains(text(),'11')]"));
+        day.click();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
         //WebElement opcion_list = driver.findElement(By.xpath("//option[@value='San Francisco']"));
         //opcion_list.click();
-
-
-
-
 
 
 
